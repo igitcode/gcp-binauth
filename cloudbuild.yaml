@@ -4,8 +4,8 @@ steps:
       - '-c'
       - >-
         docker build -t
-        gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA -t
-        gcr.io/$PROJECT_ID/$REPO_NAME:latest
+        gcr.io/$PROJECT_ID/$REPO_NAME/http-server:$SHORT_SHA -t
+        gcr.io/$PROJECT_ID/$REPO_NAME/http-server:latest
         --progress=plain -f Dockerfile .
     entrypoint: bash
     timeout: 300s
