@@ -1,0 +1,25 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args:
+      - '-c'
+      - >-
+        docker build -t
+        gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA -t
+        gcr.io/$PROJECT_ID/$REPO_NAME:latest
+        --progress=plain -f Dockerfile .
+    entrypoint: bash
+    timeout: 300s
+#  - name: gcr.io/cloud-builders/docker
+#    args:
+#      - '-c'
+#      - >-
+#        docker push gcr.io/$PROJECT_ID/$REPO_NAME:$SHORT_SHA; docker push
+#        gcr.io/$PROJECT_ID/$REPO_NAME:latest
+#    entrypoint: bash
+#    timeout: 300s
+timeout: 1200s
+images:
+  - gcr.io/$PROJECT_ID/$REPO_NAME/http-server:$SHORT_SHA
+  - gcr.io/$PROJECT_ID/$REPO_NAME/http-server:latest
+#logsBucket: 'gs://artifacts-reseller-shared-services-cloudbuild'
+
